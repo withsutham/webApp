@@ -29,10 +29,10 @@ Since these projects are built using static HTML and vanilla CSS, you can run th
     git clone https://github.com/withsutham/webApp.git
     cd webApp
     ```
-2.  Open any of the `index.html` files directly in your web browser, or use a local development server like **Live Server** (VS Code extension) or python's built-in HTTP server:
+2.  Open any of the `index.html` files directly in your web browser, or use a local development server like **Live Server** (VS Code extension) or Python's built-in HTTP server:
     ```bash
     # Run a simple Python server from the root directory
-    python -m http.server 8000
+    python3 -m http.server 8000
     ```
     Then navigate to `http://localhost:8000/ch01`, `http://localhost:8000/ch02_w01`, or `http://localhost:8000/ch02_w02` in your browser.
 
