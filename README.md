@@ -13,7 +13,7 @@ The project is structured into chapters and weekly assignments:
     *   Utilizes HTML tables and lists to organize content and menus.
 *   **`ch02_w01/`**: **Profile Card**
     *   A responsive CSS exercise styling profile cards for multiple users (John Doe and Andrew Neil).
-    *   Demonstrates CSS selectors, typography settings, custom containers, image roundings, and box-sizing techniques.
+    *   Demonstrates CSS selectors, typography settings, custom containers, rounded images, and box-sizing techniques.
 *   **`ch02_w02/`**: **CSS Grid Layout & Chat App**
     *   `index.html`: A 4-column layout mock-up created with CSS Grid, showing structured layout areas (`header`, `left aside`, `right aside`, `main`, `footer`).
     *   `chat/`: A static chat application interface mimicking a message thread with sender/receiver formatting, bubble styles, inputs, and interactive-ready components.
