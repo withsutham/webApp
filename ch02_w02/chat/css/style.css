@@ -17,13 +17,16 @@ body {
 header {
       background-color: #0084ff;
       color: white;
-      padding: 10px;
+      padding: 20px;
       border-radius: 10px 10px 0px 0px;
       text-align: center;
+      font-size: 48px;
+      border-bottom: 1px solid white;
 }
 .messages {
       height: 320px;
       overflow-y: scroll;
+      padding: 10px;
 }
 .message-receiver {
       background-color: lightgrey;
@@ -36,7 +39,7 @@ header {
 }
 .message-sender {
       background-color: #0084ff;
-      color: black;
+      color: white;
       padding: 10px;
       border-radius: 10px 10px 0px 10px;
       display: inline;
@@ -44,9 +47,35 @@ header {
       clear: both;
 }
 footer {
-      background-color: lightgrey;
+      background-color: #f0f0f1;
       color: white;
-      padding: 10px;
+      padding: 12px 10px;
+      border-top: 1px solid gray;
       text-align: center;
       border-radius: 0px 0px 10px 10px;
+      height: 65px;
+}
+
+footer #message-input {
+      width: 70%;
+      float: left;
+      padding: 10px;
+      border: 1px solid #cccccc;
+      border-radius: 20px;
+      font-size: 14px;
+      box-sizing: border-box;
+      background-color: white;
+}
+
+footer #send-button {
+      width: 25%;
+      float: right;
+      padding: 10px;
+      border: 1px solid #cccccc;
+      border-radius: 20px;
+      font-size: 14px;
+      box-sizing: border-box;
+      background-color: #0084ff;
+      color: white;
+      margin-right: 5px;
 }
