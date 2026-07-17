@@ -68,6 +68,11 @@ body {
 .post-body {
     border-top: 1px solid transparent;
     overflow: hidden;
+    cursor: pointer;
+}
+
+img {
+    cursor: pointer;
 }
 
 img#post {

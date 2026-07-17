@@ -36,6 +36,7 @@ header {
       display: inline;
       float: left;
       clear: both;
+      margin: 5px 0;
 }
 .message-sender {
       background-color: #0084ff;
@@ -45,6 +46,7 @@ header {
       display: inline;
       float: right;
       clear: both;
+      margin: 5px 0;
 }
 footer {
       background-color: #f0f0f1;
