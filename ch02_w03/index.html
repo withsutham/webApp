@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo CSS Week 3</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #f8fafc;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .subject {
+            font-size: 18px;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .student-info {
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 12px 18px;
+            color: #555;
+            font-size: 12px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #555;
+            color: #fff;
+            border-color: #555;
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+        }
+
+        .todo-list a {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #2563eb;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .todo-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-navbar">
+        <span class="subject">CSS-Week3</span>
+        <span class="student-info">Sutham Wiyaset | Student ID: 6620503586</span>
+        <div class="links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="contact/index.html" class="nav-btn">Contact</a>
+            <a href="register/index.html" class="nav-btn">Register</a>
+            <a href="webpage/index.html" class="nav-btn">Webpage</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Todo CSS Week 3</h1>
+        <div class="todo-list">
+            <a href="contact/index.html">todo1: Contact</a><br>
+            <a href="register/index.html">todo2: Register</a><br>
+            <a href="webpage/index.html">todo3: Webpage</a>
+        </div>
+    </div>
+</body>
+</html>

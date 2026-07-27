@@ -1,0 +1,254 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.top-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.subject {
+    font-size: 18px;
+    font-weight: 700;
+    color: #555;
+}
+
+.student-info {
+    font-size: 18px;
+    font-weight: 500;
+    color: #555;
+}
+
+.links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    display: block;
+    padding: 12px 18px;
+    color: #555;
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: #555;
+    color: #fff;
+    border-color: #555;
+}
+
+.page {
+    width: 100%;
+    margin: 0px auto 30px;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.hero {
+    height: 420px;
+    padding-top: 33px;
+    background-color: #222258;
+}
+
+.hero header {
+    width: 744px;
+    height: 83px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: #22a8f1;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.22);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-name {
+    margin: 0;
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 34px;
+    font-weight: 100;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-link {
+    display: block;
+    padding: 12px 18px;
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #d5bd4a;
+    background: #ffffff;
+    border-color: #e5e5e5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.content {
+    width: 744px;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+.content-text {
+    top: 112px;
+    left: 0;
+    width: 390px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: #38a8ce;
+}
+
+.headline {
+    margin: 0;
+    color: #d4b258;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 31px;
+    font-weight: normal;
+}
+
+.content-button {
+    display: inline-flex;
+    margin-top: 40px;
+    height: 35px;
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.button-icon {
+    width: 29px;
+    background-color: #ffc313;
+    color: #25305f;
+    font-size: 19px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-text {
+    width: 90px;
+    background-color: #27a9df;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.context-button:hover .button-text {
+    color: #27a9df;
+    background: #ffffff;
+}
+
+.feature {
+    width: 744px;
+    margin: 0 auto;
+    padding: 49px 20px 45px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.feature-card {
+    min-height: 184px;
+    padding: 25px 22px 22px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title {
+    margin: 0;
+    color: #47a6bd;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 19px;
+    font-weight: normal;
+}
+
+.card-icon {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    background: #ffc313;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.card-text {
+    margin: 18px 0 23px;
+    color: #a4a4a4;
+    font-size: 12px;
+    line-height: 1.55;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.more-button {
+    display: inline-block;
+    padding: 7px 13px;
+    color: #fff;
+    background: #28a8e0;
+    border: 1px solid #1696ce;
+    border-radius: 4px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 12px;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+}
+
+.more-button:hover {
+    color: #28a8e0;
+    background: #fff;
+}
