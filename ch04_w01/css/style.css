@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.top-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.subject {
+    font-size: 18px;
+    font-weight: 700;
+    color: #555;
+}
+
+.student-info {
+    font-size: 18px;
+    font-weight: 500;
+    color: #555;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+section {
+    min-height: 250px;
+    padding: 20px;
+    background-color: #555;
+    border: 1px solid #c9c9c9;
+}
+
+h2 {
+    margin-top: 0px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  padding: 7px 12px;
+  cursor: pointer;
+}
+
+#colorButton {
+  color: black;
+  background-color: red;
+  border: 1px solid #888;
+  font-size: 24px;
+}

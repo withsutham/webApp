@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        * { 
+            font-family: Comic Sans MS, cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #adff2f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .todo-list {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        input[type="text"] {
+            width: 360px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background-color: #ffff00;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed #676767;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .task-text {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        #task-checkbox {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            accent-color: #3fde3f;
+        }
+
+        #delete-button {
+            width: 15px;
+            height: 15px;
+            font-size: 8px;
+            background-color: #f72c21;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <section class="todo-list">
+            <input type="text" id="task-input" placeholder="Enter your task">
+            <ul id="task-list"></ul>
+        </section>
+    </main>
+
+    <script>
+        const taskInput = document.getElementById('task-input');
+        const taskList = document.getElementById('task-list');
+
+        taskInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                const taskText = taskInput.value.trim();
+                if (taskText !== '') {
+                    const listItem = document.createElement('li');
+                    
+                    const taskTextElement = document.createElement('span');
+                    taskTextElement.className = 'task-text';
+                    taskTextElement.innerHTML = taskText;
+
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = 'task-checkbox';
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerHTML = '🗑️';
+                    deleteButton.id = 'delete-button';
+
+                    listItem.appendChild(taskTextElement);
+                    listItem.appendChild(checkbox);
+                    listItem.appendChild(deleteButton);
+                    taskList.appendChild(listItem);
+                    taskInput.value = '';
+                }
+            }
+        });
+
+        taskList.addEventListener('click', function(event) {
+            if (event.target.tagName === 'BUTTON') {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>

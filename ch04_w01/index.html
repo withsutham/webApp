@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>Web App Week 6 (JS pt.1)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+        }
+
+        .top-navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .subject {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .student-info {
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        section {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.25rem;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+        }
+
+        button, input {
+            font: inherit;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        input[type="text"] {
+            width: 250px;
+            border: 1px solid #bdc3c7;
+        }
+
+        /* 1. Color Button */
+        #colorButton {
+            color: white;
+            background-color: red;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 6px;
+        }
+
+        /* 2. Text & Color preview */
+        #displayBox2 {
+            margin-top: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            min-height: 35px;
+        }
+
+        /* 3. Counter */
+        #countDisplay {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #2c3e50;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* 4 & 5. Lists and Slide */
+        #listContainer {
+            margin-top: 15px;
+            list-style-type: none;
+            padding: 0;
+        }
+        #listContainer li {
+            padding: 6px 12px;
+            background-color: #f8f9fa;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+            text-align: left;
+        }
+
+        #slideDisplay {
+            margin: 15px 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #e67e22;
+            min-height: 36px;
+        }
+
+        /* 6. Object nested list */
+        .object-tree {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+            padding: 20px 30px;
+            border-radius: 6px;
+        }
+        .object-tree h3 {
+            font-size: 1.15rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .object-tree ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        .object-tree ol {
+            margin-left: 25px;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-navbar">
+        <div class="subject">Javascript-1</div>
+        <div class="student-info">Sutham Wiyaset | Student ID: 6620503586</div>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>1. เปลี่ยนสีปุ่มและข้อความเมื่อกดปุ่ม</h2>
+            <button id="colorButton" onclick="toggleColorButton()">Go Blue</button>
+        </section>
+
+        <section>
+            <h2>2. แสดงข้อความและสีตามที่กำหนด</h2>
+            <div style="display: flex; justify-content: center; gap: 8px; align-items: center;">
+                <input type="text" id="inputText2" placeholder="พิมพ์ข้อความที่นี่...">
+                <input type="color" id="inputColor2" value="#ff0000" style="padding: 2px; width: 45px; height: 40px; cursor: pointer;">
+                <button onclick="updateTextAndColor()">แสดงผล</button>
+            </div>
+            <div id="displayBox2">ข้อความตัวอย่าง</div>
+        </section>
+
+        <section>
+            <h2>3. แสดงตัวเลข เพิ่ม / ลด ตามการกดปุ่ม</h2>
+            <div id="countDisplay">0</div>
+            <div class="btn-group">
+                <button onclick="changeCount(1)" style="background-color: #2ecc71;">Count Up (+)</button>
+                <button onclick="changeCount(-1)" style="background-color: #e74c3c;">Count Down (-)</button>
+                <button onclick="resetCount()" style="background-color: #95a5a6;">Reset</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. เพิ่มข้อความตามที่ใส่ใน Input</h2>
+            <div style="display: flex; justify-content: center; gap: 8px;">
+                <input type="text" id="inputText4" placeholder="กรอกข้อความเพื่อเพิ่มลงรายการ...">
+                <button onclick="addListItem()">Click (Add)</button>
+            </div>
+            <ul id="listContainer"></ul>
+        </section>
+
+        <section>
+            <h2>5. แสดงข้อความแบบสไลด์/วนลูป (จากข้อ 4)</h2>
+            <div id="slideDisplay">- ไม่มีข้อมูล (กรุณาเพิ่มข้อความในข้อ 4) -</div>
+            <div class="btn-group">
+                <button onclick="prevSlide()" style="background-color: #34495e;">Previous</button>
+                <button onclick="nextSlide()" style="background-color: #34495e;">Next</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>6. แสดงรายละเอียดข้อมูลจาก Object (myObj)</h2>
+            <div id="objectContainer"></div>
+        </section>
+
+    </div>
+
+    <script>
+        let isRed = true;
+        function toggleColorButton() {
+            const btn = document.getElementById('colorButton');
+            if (isRed) {
+                btn.style.backgroundColor = 'blue';
+                btn.innerText = 'Go Red';
+                isRed = false;
+            } else {
+                btn.style.backgroundColor = 'red';
+                btn.innerText = 'Go Blue';
+                isRed = true;
+            }
+        }
+
+        function updateTextAndColor() {
+            const textVal = document.getElementById('inputText2').value;
+            const colorVal = document.getElementById('inputColor2').value;
+            const display = document.getElementById('displayBox2');
+
+            if (textVal.trim() !== "") {
+                display.innerText = textVal;
+            }
+            display.style.color = colorVal;
+        }
+
+        let count = 0;
+        function changeCount(amount) {
+            count += amount;
+            document.getElementById('countDisplay').innerText = count;
+        }
+        function resetCount() {
+            count = 0;
+            document.getElementById('countDisplay').innerText = count;
+        }
+
+        const itemsArray = [];
+        let currentIndex = 0;
+
+        function addListItem() {
+            const input = document.getElementById('inputText4');
+            const text = input.value.trim();
+
+            if (text !== "") {
+                itemsArray.push(text);
+
+                // แสดงผลใน List ข้อ 4
+                const ul = document.getElementById('listContainer');
+                const li = document.createElement('li');
+                li.innerText = `${itemsArray.length}. ${text}`;
+                ul.appendChild(li);
+
+                if (itemsArray.length === 1) {
+                    currentIndex = 0;
+                    renderSlide();
+                }
+
+                input.value = "";
+                input.focus();
+            }
+        }
+
+        function renderSlide() {
+            const slideDisplay = document.getElementById('slideDisplay');
+            if (itemsArray.length > 0) {
+                slideDisplay.innerText = `[${currentIndex + 1}/${itemsArray.length}] : ${itemsArray[currentIndex]}`;
+            }
+        }
+
+        function nextSlide() {
+            if (itemsArray.length === 0) return;
+            currentIndex++;
+            if (currentIndex >= itemsArray.length) {
+                currentIndex = 0;
+            }
+            renderSlide();
+        }
+
+        function prevSlide() {
+            if (itemsArray.length === 0) return;
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = itemsArray.length - 1;
+            }
+            renderSlide();
+        }
+
+        const myObj = {
+            name: "John",
+            age: 30,
+            cars: [
+                { name: "Ford", models: ["Fiesta", "Focus", "Mustang"] },
+                { name: "BMW", models: ["320", "X3", "X5"] },
+                { name: "Fiat", models: ["500", "Panda"] }
+            ]
+        };
+
+        function displayObjectData() {
+            const container = document.getElementById('objectContainer');
+
+            let html = `<div class="object-tree">`;
+            html += `<h3>Owner : ${myObj.name} (${myObj.age})</h3>`;
+            html += `<ul>`;
+
+            for (let i = 0; i < myObj.cars.length; i++) {
+                const car = myObj.cars[i];
+                html += `<li><strong>${car.name}</strong>`;
+                html += `<ol>`;
+                for (let j = 0; j < car.models.length; j++) {
+                    html += `<li>${car.models[j]}</li>`;
+                }
+                html += `</ol></li>`;
+            }
+
+            html += `</ul></div>`;
+            container.innerHTML = html;
+        }
+
+        window.onload = function() {
+            displayObjectData();
+        };
+    </script>
+</body>
+</html>
