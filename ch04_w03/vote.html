@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #5cb6ca;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 48px;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #showvote {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #000;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="vote"></div>
+                <h1>Vote the Favorite</h1>
+                <button id="burger">🍔</button>
+                <button id="pizza">🍕</button>
+                <button id="hotdog">🌭</button>
+            </div>
+            <a id="showvote" href="showvote.html">Show Vote</a>
+        </div>
+    </main>
+    <script>
+        const burgerBtn = document.getElementById('burger');
+        const pizzaBtn = document.getElementById('pizza');
+        const hotdogBtn = document.getElementById('hotdog');
+
+        function voteBurger() {
+            let burgerVotes = localStorage.getItem('burgerVotes') || 0;
+            burgerVotes++;
+            localStorage.setItem('burgerVotes', burgerVotes);
+        }
+
+        function votePizza() {
+            let pizzaVotes = localStorage.getItem('pizzaVotes') || 0;
+            pizzaVotes++;
+            localStorage.setItem('pizzaVotes', pizzaVotes);
+        }
+
+        function voteHotdog() {
+            let hotdogVotes = localStorage.getItem('hotdogVotes') || 0;
+            hotdogVotes++;
+            localStorage.setItem('hotdogVotes', hotdogVotes);
+        }
+
+        burgerBtn.addEventListener('click', voteBurger);
+        pizzaBtn.addEventListener('click', votePizza);
+        hotdogBtn.addEventListener('click', voteHotdog);
+
+    </script>
+</body>
+</html>

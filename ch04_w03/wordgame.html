@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Game</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+
+            <p>Score: <span id="score"></span></p>
+            <p>Word : <span id="round"></span>/5</p>
+            <p>Time: <span id="time"></span></p>
+
+            <div id="answer"></div>
+            <div id="letter"></div>
+            <button id="reset">Reset</button>
+
+            <p id="result"></p>
+
+        </div>
+    </main>
+
+    <script>
+        let words = JSON.parse(localStorage.getItem('words')) || [];
+        let score = 0;
+        let round = 0;
+        let time = 10;
+        let timer;
+        let currentWord = '';
+
+        const answer = document.getElementById('answer');
+        const letter = document.getElementById('letter');
+        const textScore = document.getElementById('score');
+        const textRound = document.getElementById('round');
+        const textTime = document.getElementById('time');
+        const result = document.getElementById('result');
+        const resetButton = document.getElementById('reset');
+
+
+
+        function randomWord() {
+            if (round == 5) {
+                result.innerText = "Score = " + score + " / 5";
+                clearInterval(timer);
+                return;
+            }
+
+            round++;
+            textRound.innerText = round;
+
+            answer.innerHTML = '';
+            letter.innerHTML = '';
+
+            let randomIndex = Math.floor(Math.random() * words.length);
+            currentWord = words[randomIndex];
+
+            let characters = currentWord.split('');
+        }
+
+    </script>
+</body>
+
+</html>

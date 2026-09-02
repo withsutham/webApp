@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Vote</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #5cb6ca;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .showvote {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        #burger-icon, #pizza-icon, #hotdog-icon {
+            font-size: 48px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        #vote-link,
+        #reset {
+            font-size: 16px;
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            color: #000;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+
+        #vote-link,
+        #reset {
+            width: 150px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Vote Results</h1>
+            <div class="showvote">
+                <div id="burger-result">
+                    <div id="burger-icon">🍔</div>
+                    <div id="burger-votes">0</div>
+                </div>
+                <div id="pizza-result">
+                    <div id="pizza-icon">🍕</div>
+                    <div id="pizza-votes">0</div>
+                </div>
+                <div id="hotdog-result">
+                    <div id="hotdog-icon">🌭</div>
+                    <div id="hotdog-votes">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <a id="vote-link" href="vote.html">Back to Vote</a>
+            <button id="reset">Reset Votes</button>
+        </div>
+    </main>
+    <script>
+        const burgerVotes = localStorage.getItem('burgerVotes') || 0;
+        const pizzaVotes = localStorage.getItem('pizzaVotes') || 0;
+        const hotdogVotes = localStorage.getItem('hotdogVotes') || 0;
+
+        document.getElementById('burger-votes').innerText = burgerVotes;
+        document.getElementById('pizza-votes').innerText = pizzaVotes;
+        document.getElementById('hotdog-votes').innerText = hotdogVotes;
+
+        const resetBtn = document.getElementById('reset');
+        resetBtn.addEventListener('click', resetVotes);
+
+        function resetVotes() {
+            localStorage.removeItem('burgerVotes');
+            localStorage.removeItem('pizzaVotes');
+            localStorage.removeItem('hotdogVotes');
+            document.getElementById('burger-votes').innerText = 0;
+            document.getElementById('pizza-votes').innerText = 0;
+            document.getElementById('hotdog-votes').innerText = 0;
+        }
+    </script>
+</body>
+</html>
