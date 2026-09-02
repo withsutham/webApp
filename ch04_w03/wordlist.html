@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
+    <title>Word List</title>
     <style>
-        * { 
+        * {
             font-family: Comic Sans MS, cursive, sans-serif;
             margin: 0;
             padding: 0;
@@ -20,7 +21,7 @@
             height: 100vh;
         }
 
-        .todo-list {
+        .word-list {
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             background-color: #fff;
@@ -54,16 +55,9 @@
             border-bottom: none;
         }
 
-        .task-text {
+        .word-text {
             flex: 1;
             margin-right: 10px;
-        }
-
-        #task-checkbox {
-            width: 15px;
-            height: 15px;
-            margin-right: 5px;
-            accent-color: #3fde3f;
         }
 
         #delete-button {
@@ -72,69 +66,74 @@
             font-size: 8px;
             background-color: #f72c21;
         }
-
-
-
-
     </style>
 </head>
+
 <body>
     <main>
-        <section class="todo-list">
-            <input type="text" id="task-input" placeholder="Enter your task">
-            <ul id="task-list"></ul>
+        <section class="word-list">
+            <input
+                type="text"
+                id="word-input"
+                placeholder="Enter your word"
+                maxlength="3"
+                minlength="3"
+                pattern="[A-Za-z]{3}"
+                required
+            >
+            <ul id="word-list"></ul>
         </section>
     </main>
 
     <script>
-        const taskInput = document.getElementById('task-input');
-        const taskList = document.getElementById('task-list');
+        const wordInput = document.getElementById('word-input');
+        const wordList = document.getElementById('word-list');
 
-        taskInput.addEventListener('keypress', function(event) {
+        let words = JSON.parse(localStorage.getItem('words')) || [];
+
+        wordInput.addEventListener('keypress', function (event) {
             if (event.key === 'Enter') {
-                const taskText = taskInput.value.trim();
-                if (taskText !== '') {
-                    const listItem = document.createElement('li');
-                    
-                    const taskTextElement = document.createElement('span');
-                    taskTextElement.className = 'task-text';
-                    taskTextElement.innerHTML = taskText;
+                const wordText = wordInput.value.trim().toUpperCase();
+                if (wordText !== '') {
 
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.id = 'task-checkbox';
+                    if (!/^[A-Z]{3}$/.test(wordText)) {
+                        alert("Please enter a valid 3-letter word.");
+                        wordInput.value = '';
+                        return;
+                    }
+
+                    const listItem = document.createElement('li');
+
+                    const wordTextElement = document.createElement('span');
+                    wordTextElement.className = 'word-text';
+                    wordTextElement.innerHTML = wordText;
 
                     const deleteButton = document.createElement('button');
                     deleteButton.innerHTML = '🗑️';
                     deleteButton.id = 'delete-button';
 
-                    listItem.appendChild(taskTextElement);
-                    listItem.appendChild(checkbox);
+                    listItem.appendChild(wordTextElement);
                     listItem.appendChild(deleteButton);
-                    taskList.appendChild(listItem);
-                    taskInput.value = '';
+                    wordList.appendChild(listItem);
+                    words.push(wordText);
+                    saveWords();
+                    wordInput.value = '';
                 }
             }
         });
 
-        taskList.addEventListener('change', function(event) {
-            if (event.target.type === 'checkbox') {
-                const listItem = event.target.parentElement;
-                if (event.target.checked) {
-                    listItem.style.textDecoration = 'line-through';
-                    listItem.style.color = 'grey';
-                } else {
-                    listItem.style.textDecoration = 'none';
-                    listItem.style.color = 'black';
-                }
-            }
-        });
-
-        taskList.addEventListener('click', function(event) {
+        wordList.addEventListener('click', function (event) {
             if (event.target.tagName === 'BUTTON') {
                 event.target.parentElement.remove();
             }
         });
+
+        function saveWords() {
+            localStorage.setItem("words", JSON.stringify(words));
+        }
+
+
     </script>
 </body>
+
 </html>
