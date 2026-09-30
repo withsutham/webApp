@@ -1,0 +1,72 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  width: 700px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+.color-section,
+.text-section {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #999;
+}
+
+.color-section {
+  margin-top: 50px;
+}
+
+.text-section {
+  margin-top: 30px;
+}
+
+.color-button {
+  padding: 10px 15px;
+  font-size: 18px;
+  border: 2px solid #888;
+  cursor: pointer;
+}
+
+.color-button--red {
+  background-color: red;
+}
+
+.color-button--blue {
+  background-color: blue;
+}
+
+.text-preview {
+  color: var(--text-preview-color);
+  font-size: 20px;
+}
+
+.text-input {
+  width: 250px;
+  margin-right: 10px;
+  padding: 7px;
+  font-size: 16px;
+}
+
+.color-picker {
+  width: 70px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.counter-section {
+  margin-top: 30px;
+}
+
+.counter-button {
+  padding: 6px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.counter-button + .counter-button {
+  margin-left: 5px;
+}
