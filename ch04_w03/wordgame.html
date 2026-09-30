@@ -5,19 +5,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #adff2f;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            font-family: Comic Sans MS, cursive, sans-serif;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .subject {
+            font-size: 18px;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .student-info {
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 12px 18px;
+            color: #555;
+            font-size: 12px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #555;
+            color: #fff;
+            border-color: #555;
+        }
+
+        .container {
+            width: 420px;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        #answer,
+        #letter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .answer-box {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #50b5cf;
+            border-radius: 10px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .letter-box {
+            width: 70px;
+            height: 60px;
+            background-color: #50b5cf;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+        }
+
+        #reset {
+            width: 100%;
+            padding: 10px;
+            background-color: #899668;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+            min-height: 25px;
+        }
+    </style>
 </head>
 
 <body>
+    <header class="top-navbar">
+        <div class="subject">Javascript-3</div>
+        <div class="student-info">Sutham Wiyaset | Student ID: 6620503586</div>
+        <div class="links">
+            <a href="wordgame.html" class="nav-btn">PLAY</a>
+            <a href="wordlist.html" class="nav-btn">WORD LIST</a>
+        </div>
+    </header>
+
     <main>
         <div class="container">
 
-            <p>Score: <span id="score"></span></p>
-            <p>Word : <span id="round"></span>/5</p>
-            <p>Time: <span id="time"></span></p>
+            <div class="game-info">
+                <p>Score: <span id="score">0</span></p>
+                <p>Word : <span id="round">0</span>/5</p>
+                <p>Time: <span id="time">10</span></p>
+            </div>
 
             <div id="answer"></div>
             <div id="letter"></div>
-            <button id="reset">Reset</button>
+            <button id="reset">Press to start the game</button>
 
             <p id="result"></p>
 
@@ -40,12 +181,13 @@
         const result = document.getElementById('result');
         const resetButton = document.getElementById('reset');
 
-
-
         function randomWord() {
             if (round == 5) {
                 result.innerText = "Score = " + score + " / 5";
                 clearInterval(timer);
+                answer.innerHTML = '';
+                letter.innerHTML = '';
+                textTime.innerText = 0;
                 return;
             }
 
@@ -54,14 +196,153 @@
 
             answer.innerHTML = '';
             letter.innerHTML = '';
+            result.innerText = '';
 
             let randomIndex = Math.floor(Math.random() * words.length);
             currentWord = words[randomIndex];
 
             let characters = currentWord.split('');
+
+            for (let i = characters.length - 1; i > 0; i--) {
+                let randomIndex = Math.floor(Math.random() * (i + 1));
+                let temp = characters[i];
+                characters[i] = characters[randomIndex];
+                characters[randomIndex] = temp;
+            }
+
+            for (let i = 0; i < currentWord.length; i++) {
+                const box = document.createElement('div');
+                box.className = 'answer-box';
+
+                box.addEventListener('dragover', function (event) {
+                    event.preventDefault();
+                });
+
+                box.addEventListener('drop', dropLetter);
+
+                answer.appendChild(box);
+            }
+
+            for (let i = 0; i < characters.length; i++) {
+                const box = document.createElement('div');
+
+                box.className = 'letter-box';
+                box.id = 'letter-' + i;
+                box.innerText = characters[i];
+                box.draggable = true;
+
+                box.addEventListener('dragstart', function (event) {
+                    event.dataTransfer.setData('text', event.target.id);
+                });
+
+                letter.appendChild(box);
+            }
+
+            startTimer();
         }
 
+        function dropLetter(event) {
+            event.preventDefault();
+
+            if (event.currentTarget.children.length > 0) {
+                return;
+            }
+
+            const id = event.dataTransfer.getData('text');
+            const draggedLetter = document.getElementById(id);
+
+            event.currentTarget.appendChild(draggedLetter);
+
+            checkComplete();
+        }
+
+        function checkComplete() {
+            const boxes = document.querySelectorAll('.answer-box');
+            let complete = true;
+
+            boxes.forEach(function (box) {
+                if (box.children.length == 0) {
+                    complete = false;
+                }
+            });
+
+            if (complete) {
+                checkAnswer();
+            }
+        }
+
+        function checkAnswer() {
+            clearInterval(timer);
+
+            const boxes = document.querySelectorAll('.answer-box');
+            let playerAnswer = '';
+
+            boxes.forEach(function (box) {
+                playerAnswer += box.innerText;
+            });
+
+            if (playerAnswer == currentWord) {
+                score++;
+                textScore.innerText = score;
+                result.innerText = 'Correct';
+            } else {
+                result.innerText = 'Wrong, answer is ' + currentWord;
+            }
+
+            setTimeout(function () {
+                randomWord();
+            }, 1000);
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+
+            time = 10;
+            textTime.innerText = time;
+
+            timer = setInterval(function () {
+                time--;
+                textTime.innerText = time;
+
+                if (time <= 0) {
+                    clearInterval(timer);
+                    result.innerText = 'Timeout! Answer is ' + currentWord;
+
+                    setTimeout(function () {
+                        randomWord();
+                    }, 1000);
+                }
+            }, 1000);
+        }
+
+        function resetGame() {
+            clearInterval(timer);
+
+            words = JSON.parse(localStorage.getItem('words')) || [];
+
+            if (words.length == 0) {
+                result.innerText = 'Please add words in WORD LIST first.';
+                answer.innerHTML = '';
+                letter.innerHTML = '';
+                return;
+            }
+
+            score = 0;
+            round = 0;
+            time = 10;
+
+            textScore.innerText = score;
+            textRound.innerText = round;
+            textTime.innerText = time;
+            result.innerText = '';
+            resetButton.innerText = 'Reset';
+
+            randomWord();
+        }
+
+        resetButton.addEventListener('click', resetGame);
     </script>
 </body>
 
 </html>
+

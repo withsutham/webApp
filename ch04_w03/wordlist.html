@@ -7,7 +7,7 @@
     <title>Word List</title>
     <style>
         * {
-            font-family: Comic Sans MS, cursive, sans-serif;
+            
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -16,9 +16,62 @@
         body {
             background-color: #adff2f;
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            font-family: Comic Sans MS, cursive, sans-serif;
+            flex: 1;
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            width: 100%;
+        }
+
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .subject {
+            font-size: 18px;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .student-info {
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 12px 18px;
+            color: #555;
+            font-size: 12px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #555;
+            color: #fff;
+            border-color: #555;
         }
 
         .word-list {
@@ -60,7 +113,7 @@
             margin-right: 10px;
         }
 
-        #delete-button {
+        .delete-button {
             width: 15px;
             height: 15px;
             font-size: 8px;
@@ -70,6 +123,14 @@
 </head>
 
 <body>
+    <header class="top-navbar">
+        <div class="subject">Javascript-3</div>
+        <div class="student-info">Sutham Wiyaset | Student ID: 6620503586</div>
+        <div class="links">
+            <a href="wordgame.html" class="nav-btn">PLAY</a>
+            <a href="wordlist.html" class="nav-btn">WORD LIST</a>
+        </div>
+    </header>
     <main>
         <section class="word-list">
             <input
@@ -91,6 +152,31 @@
 
         let words = JSON.parse(localStorage.getItem('words')) || [];
 
+        function renderWords() {
+            wordList.innerHTML = '';
+
+            words.forEach(function (word, index) {
+                const listItem = document.createElement('li');
+
+                const wordTextElement = document.createElement('span');
+                wordTextElement.className = 'word-text';
+                wordTextElement.textContent = word;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.type = 'button';
+                deleteButton.className = 'delete-button';
+                deleteButton.dataset.index = index;
+                deleteButton.textContent = 'X';
+                deleteButton.setAttribute('aria-label', `Delete ${word}`);
+
+                listItem.appendChild(wordTextElement);
+                listItem.appendChild(deleteButton);
+                wordList.appendChild(listItem);
+            });
+        }
+
+        renderWords();
+
         wordInput.addEventListener('keypress', function (event) {
             if (event.key === 'Enter') {
                 const wordText = wordInput.value.trim().toUpperCase();
@@ -102,30 +188,23 @@
                         return;
                     }
 
-                    const listItem = document.createElement('li');
-
-                    const wordTextElement = document.createElement('span');
-                    wordTextElement.className = 'word-text';
-                    wordTextElement.innerHTML = wordText;
-
-                    const deleteButton = document.createElement('button');
-                    deleteButton.innerHTML = '🗑️';
-                    deleteButton.id = 'delete-button';
-
-                    listItem.appendChild(wordTextElement);
-                    listItem.appendChild(deleteButton);
-                    wordList.appendChild(listItem);
                     words.push(wordText);
                     saveWords();
+                    renderWords();
                     wordInput.value = '';
                 }
             }
         });
 
         wordList.addEventListener('click', function (event) {
-            if (event.target.tagName === 'BUTTON') {
-                event.target.parentElement.remove();
-            }
+            const deleteButton = event.target.closest('.delete-button');
+
+            if (!deleteButton) return;
+
+            const wordIndex = Number(deleteButton.dataset.index);
+            words.splice(wordIndex, 1);
+            saveWords();
+            renderWords();
         });
 
         function saveWords() {
@@ -137,3 +216,4 @@
 </body>
 
 </html>
+
