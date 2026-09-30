@@ -69,8 +69,8 @@
             height: auto;
             aspect-ratio: 1;
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            grid-template-rows: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
             gap: 10px;
         }
 
@@ -84,10 +84,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: clamp(24px, 8vw, 48px);
+            font-size: 8vw;
             line-height: 1;
-            white-space: nowrap;
-            overflow: hidden;
             cursor: pointer;
             border: none;
             outline: none;
