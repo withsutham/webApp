@@ -1,0 +1,193 @@
+.app {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.app-header,
+.section-heading,
+.food-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.app-header {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #687386;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  color: #1f2937;
+  font-size: 2rem;
+}
+
+h2 {
+  margin-bottom: 0;
+  color: #1f2937;
+  font-size: 1.25rem;
+}
+
+h3 {
+  margin-bottom: 4px;
+  color: #1f2937;
+  font-size: 1.05rem;
+  text-transform: capitalize;
+}
+
+.mode-control,
+.food-form {
+  display: grid;
+  gap: 6px;
+}
+
+.mode-control {
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+select,
+input,
+button {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+}
+
+select,
+input {
+  padding: 8px 10px;
+  background: #fff;
+  color: #1f2937;
+}
+
+button {
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  filter: brightness(0.96);
+}
+
+.section-heading {
+  margin-bottom: 12px;
+}
+
+.section-heading span {
+  color: #687386;
+  font-size: 0.9rem;
+}
+
+.food-list {
+  display: grid;
+  gap: 10px;
+}
+
+.food-item {
+  padding: 14px 16px;
+  border: 1px solid #dbe2ea;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgb(15 23 42 / 6%);
+}
+
+.price {
+  margin-bottom: 0;
+  color: #687386;
+}
+
+.food-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #526071;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.badge.bestseller {
+  background: #fff0c2;
+  color: #8a5a00;
+}
+
+.delete-button {
+  border-color: #f0b6b6;
+  background: #fff5f5;
+  color: #b42318;
+}
+
+.form-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #dbe2ea;
+}
+
+.food-form {
+  margin-top: 14px;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+}
+
+.food-form label {
+  color: #4b5563;
+  font-weight: 700;
+}
+
+.add-button {
+  grid-column: 2;
+  justify-self: start;
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff;
+}
+
+@media (max-width: 560px) {
+  .app-header,
+  .food-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mode-control {
+    width: 100%;
+  }
+
+  .food-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .food-form {
+    grid-template-columns: 1fr;
+  }
+
+  .add-button {
+    grid-column: 1;
+  }
+}
