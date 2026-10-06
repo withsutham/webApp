@@ -1,0 +1,15 @@
+{
+  "name": "ch05-todo2",
+  "version": "1.0.0",
+  "description": "Todo 2 Node.js and Express website",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
