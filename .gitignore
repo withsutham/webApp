@@ -85,3 +85,7 @@ temp/
 
 # AI Agent folders
 .agents/
+/AGENTS.md
+
+# Course materials
+.DUMP/
