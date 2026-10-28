@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model menu {
+  menuId       Int      @id @default(autoincrement())
+  name         String   @db.VarChar(100)
+  price        Decimal  @db.Decimal(10, 2)
+  isBestSeller Boolean  @default(false)
+  typeId       Int?
+  type         type?    @relation(fields: [typeId], references: [typeId], onDelete: Restrict, onUpdate: Restrict, map: "menu_ibfk_1")
+  ratings      rating[]
+
+  @@index([typeId], map: "typeId")
+}
+
+model type {
+  typeId Int    @id @default(autoincrement())
+  name   String @db.VarChar(100)
+  menu   menu[]
+}
+
+model user {
+  userId    Int      @id @default(autoincrement())
+  userName  String   @unique(map: "user_userName_key") @db.VarChar(50)
+  email     String   @unique(map: "user_email_key") @db.VarChar(191)
+  password  String   @db.VarChar(60)
+  role      String   @default("user") @db.VarChar(16)
+  createdAt DateTime @default(now()) @db.DateTime(3)
+  ratings   rating[]
+}
+
+model rating {
+  ratingId  Int      @id @default(autoincrement())
+  userId    Int
+  menuId    Int
+  score     Int      @db.UnsignedTinyInt
+  createdAt DateTime @default(now()) @db.DateTime(3)
+  updatedAt DateTime @updatedAt @db.DateTime(3)
+  user      user     @relation(fields: [userId], references: [userId], onDelete: Cascade, onUpdate: Cascade, map: "rating_userId_fkey")
+  menu      menu     @relation(fields: [menuId], references: [menuId], onDelete: Cascade, onUpdate: Cascade, map: "rating_menuId_fkey")
+
+  @@unique([userId, menuId], map: "rating_userId_menuId_key")
+  @@index([menuId], map: "rating_menuId_idx")
+}
